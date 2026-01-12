@@ -1,0 +1,19 @@
+/**:
+  ros__parameters:
+    # 图片文件夹的绝对路径 (请修改为您实际的图片路径)
+    image_folder: "/home/lyy/ros2_compress/photos"
+    
+    # 发布频率 (Hz)
+    publish_frequency: 15.0
+    
+    # 基础话题名称
+    topic_name: "camera/image_raw"
+    
+    # TF Frame ID
+    frame_id: "camera_optical_frame"
+    
+    # PNG 压缩等级 (0-9)
+    # 0: 无压缩 (最快，体积大)
+    # 3: 平衡 (推荐，适合15Hz)
+    # 9: 最大压缩 (最慢，体积最小)
+    png_compression_level: 3
