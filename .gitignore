@@ -3,7 +3,7 @@ build/
 install/
 log/
 photos/
-
+my_final_bag/
 # Python 缓存文件
 __pycache__/
 *.pyc
