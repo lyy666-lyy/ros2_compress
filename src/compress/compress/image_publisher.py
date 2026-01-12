@@ -109,18 +109,20 @@ class ImagePublisher(Node):
             msg_compressed = CompressedImage()
             msg_compressed.header.stamp = timestamp
             msg_compressed.header.frame_id = self.frame_id
-            msg_compressed.format = "png"
+            
+            format_type = "jpeg" # 或者从参数获取
+            msg_compressed.format = format_type
 
-            # 设置 PNG 压缩参数 [IMWRITE_PNG_COMPRESSION, level]
-            encode_param = [int(cv2.IMWRITE_PNG_COMPRESSION), self.png_level]
-            success, encoded_img = cv2.imencode('.png', cv_img, encode_param)
-
+            if format_type == "png":
+                encode_param = [int(cv2.IMWRITE_PNG_COMPRESSION), self.png_level]
+                success, encoded_img = cv2.imencode('.png', cv_img, encode_param)
+            else:
+        # 使用 95 质量的 JPEG，通常被视为视觉无损
+                encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 95]
+                success, encoded_img = cv2.imencode('.jpg', cv_img, encode_param)
             if success:
                 msg_compressed.data = encoded_img.tobytes()
                 self.pub_compressed.publish(msg_compressed)
-            else:
-                self.get_logger().error("图像压缩失败")
-
         except Exception as e:
             self.get_logger().error(f"压缩发布失败: {e}")
 

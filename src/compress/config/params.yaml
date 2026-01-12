@@ -16,4 +16,4 @@
     # 0: 无压缩 (最快，体积大)
     # 3: 平衡 (推荐，适合15Hz)
     # 9: 最大压缩 (最慢，体积最小)
-    png_compression_level: 3
+    png_compression_level: 9
